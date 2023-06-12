@@ -19,7 +19,7 @@ const getApiCountries = async () => {//Carga la base de datos con la info de la 
     await Country.bulkCreate(apiCountries);
 }
 
-const getDbInfo = async () => {
+const searchDatabaseInfo = async () => {
   return await Country.findAll(
       {
           include: {
@@ -30,13 +30,13 @@ const getDbInfo = async () => {
 
 const getAllCountries = async () => {
   const apiInfo = await getApiCountries()
-  const dbInfo = await getDbInfo()
+  const dbInfo = await searchDatabaseInfo()
   const allInfo = apiInfo.concat(dbInfo)
   return allInfo
 }
 
 module.exports = {
   getApiCountries,
-  getDbInfo,
+  searchDatabaseInfo,
   getAllCountries,
 };

@@ -9,7 +9,7 @@ server.listen(PORT, async () => {
   const allCountries = Country.findAll();
   if(!allCountries.length){
     getApiCountries() //Carga la base de datos con la info de la api
-    console.log('DB creado')
+    console.log('DB created')
   }
   console.log(`Server listening on port ${PORT}`);
 })
