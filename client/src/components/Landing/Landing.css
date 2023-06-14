@@ -1,0 +1,82 @@
+
+
+.landing{
+    display: flex;
+    flex-direction: row;
+    margin-top: 3vw;
+    
+}
+
+.landing-izquierda{
+    display: flex;
+    flex-direction: column;
+    max-width: 45vw;
+    gap: 3vw;
+}
+.bienvenida{
+    font-size: 60px;
+    font-family: 'Noto Serif', serif;
+    margin: 0px;
+}
+.bienvenida-descripcion{
+    font-size: 30px;
+    font-family: 'Noto Serif', serif;
+    margin: 0px;
+}
+.bienvenida-link{
+    display: inline-block;
+    width: fit-content;
+}
+.bienvenida-boton {
+    font-family: 'Noto Serif', serif;
+    font-size: 32px;
+    min-width: 20vw;
+    width: 40vw;
+    color: #fff;
+    padding: 5px 10px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    position: relative;
+    display: inline-block;
+    outline: none;
+    border-radius: 5px;
+    border: 2px solid #680148;
+    background: #680148;
+  }
+  .bienvenida-boton:hover {
+    background: rgba(0, 0, 0, 0);
+    color: #680148
+  }
+
+.lineaDivisoria{
+    border-left: thin solid #680148;
+}
+
+.landing-derecha{
+    margin-left: 3vw;
+    display: flex;
+    flex-direction: column;
+    max-width: 45vw;
+    gap: 3vw;
+    align-items: center;
+    border-left: #1a0413;
+}
+.landing-derecha-estante{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 2vw;
+}
+.landing-derecha-estante-descripcion{
+    font-size: 32px;
+    font-family: 'Noto Serif', serif;
+}
+
+.mundo3{
+    max-width: 22vw;
+}.mundo2{
+    max-width: 22vw;
+}.mundo1{
+    max-width: 22vw;
+}

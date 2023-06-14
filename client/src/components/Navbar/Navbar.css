@@ -1,0 +1,27 @@
+.Navbar {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+}
+  
+.marca{
+    margin: 0;
+    font-size: 40px;
+    font-family: 'Noto Serif', serif;
+    text-decoration: none;
+    color: #000;
+}
+  
+.navbar-right{
+    display: flex;
+    flex-direction: row;
+    gap: 2vw;
+}
+.flow {
+    font-size: 20px;
+    font-family: 'Noto Serif', serif;
+    text-decoration: none;
+    color: #000;
+}
