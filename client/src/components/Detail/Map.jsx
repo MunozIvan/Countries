@@ -2,6 +2,7 @@ import React from "react";
 import { GoogleMap, LoadScript } from "@react-google-maps/api";
 
 const Map = ({ latitude, longitude }) => {
+
   const mapContainerStyle = {
     width: "40vw",
     height: "40vw",

@@ -13,8 +13,10 @@ function Card(props){
       <div className="card">
         <Link className="linkDetail" to={`/countries/${id}`} >  
             <img src={flag} alt={name} />
-            <h2>{name}</h2>
-            <p>Capital: {capital}</p>
+            <div className="linkDetail-datos">
+              <h2>{name}</h2>
+              <p>Capital: {capital}</p>
+            </div>
         </Link>
       </div>
     );

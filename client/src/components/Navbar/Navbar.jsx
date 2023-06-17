@@ -16,7 +16,7 @@ function Navbar() {
             <div className="navbar-right">
                 <Link className="flow" to={"/home"}>Home</Link>
                 <Link className="flow" to={"/"}>Landing page</Link> 
-                <Link className="flow" to={"/"}>Activities</Link> 
+                <Link className="flow" to={"/activities"}>Activities</Link> 
             </div>
         </nav> 
     );

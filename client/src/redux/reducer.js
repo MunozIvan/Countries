@@ -39,20 +39,7 @@ const rootReducer = (state = initialState, action) => {
             ...state,
             countries: action.payload
         }
-    case "ORDER_BY_ACTIVITY":
-      const allActivities = state.allActivities;
-      const activityFilter =
-        action.payload === "All"
-          ? allActivities.filter((e) => e.activities.length > 0)
-          : allActivities.filter((c) =>
-              c.activities.find(
-                (element) => element.name.toLowerCase() === action.payload
-              )
-            );
-      return {
-        ...state,
-        countries: activityFilter,
-      };
+    
     default:
       return state;
   }

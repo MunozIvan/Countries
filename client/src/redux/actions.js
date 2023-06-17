@@ -126,7 +126,7 @@ export function orderByPopulation(ordering) {
         } catch (error) {
           console.log(error.message);
         }
-      };
+      }; 
 }
 
 export function orderByContinent(ordering) {

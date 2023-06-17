@@ -14,6 +14,13 @@ export default function Detail() {
         dispatch(actions.getCountryDetail(id))
     }, [id]);
    
+    if(countryDetail.Activities){
+        var activitiesNames = []
+        countryDetail.Activities.forEach(element => {
+            activitiesNames.push(element.name)
+        });
+        var activitiesNames = activitiesNames.join(", ")
+    }
 
     return (
         <div className="detail-container">
@@ -29,6 +36,10 @@ export default function Detail() {
                                 <h3>Subregion: {countryDetail.subregion}</h3>
                                 <h3>Area: {countryDetail.area}</h3>
                                 <h3>Population: {countryDetail.population}</h3>
+                                {countryDetail.Activities.length?
+                                <h3>Activities: {activitiesNames}</h3>:
+                                <></>
+                                }
                                 <h4>Wikipedia's website: <a href={`https://en.wikipedia.org/wiki/${countryDetail.name}`}>https://en.wikipedia.org/wiki/{countryDetail.name}</a></h4>
                             </div>
                         </div>
