@@ -1,5 +1,5 @@
 import "./App.css"
-import {Routes, Route, useNavigate} from "react-router-dom"
+import {Routes, Route} from "react-router-dom"
 import Landing from "./components/Landing/Landing";
 import Navbar from "./components/Navbar/Navbar";
 import Home from "./components/Home/Home";

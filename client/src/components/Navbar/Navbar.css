@@ -3,7 +3,7 @@
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
-    padding: 10px;
+    
 }
   
 .marca{
@@ -12,6 +12,12 @@
     font-family: 'Noto Serif', serif;
     text-decoration: none;
     color: #000;
+}
+.navbar-left{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    gap:1vw;
 }
   
 .navbar-right{
@@ -24,4 +30,11 @@
     font-family: 'Noto Serif', serif;
     text-decoration: none;
     color: #000;
+}
+.empresa{
+    font-size: 36px
+}
+.mundo4{
+    width: 5vw;
+    align-self: center;
 }

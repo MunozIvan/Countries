@@ -46,7 +46,7 @@ router.post("/", async (req, res) => {
     }
 })
 
-router.delete("/delete", async (req, res) => {
+router.delete("/", async (req, res) => {
      let {id} = req.body
     try {
         await Activity.destroy({where:{id: id}})

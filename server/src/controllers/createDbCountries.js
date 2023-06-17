@@ -13,7 +13,9 @@ const getApiCountries = async () => {//Carga la base de datos con la info de la 
         capital: pais.capital ? pais.capital.join("-") : 'Not found',
         subregion: pais.subregion? pais.subregion : pais.continents.join("-"),
         area: pais.area,
-        population: pais.population
+        population: pais.population,
+        latitude: pais.latlng[0],
+        longitude: pais.latlng[1],
       }
     })
     await Country.bulkCreate(apiCountries);

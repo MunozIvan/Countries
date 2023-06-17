@@ -1,40 +1,27 @@
-import "./Home.css"
-import axios from 'axios';
-import { useEffect, useState} from "react";
-import Card from "../Card/Card";
-
+import "./Home.css";
+import Cards from "../Cards/Cards";
+import Searchbar from "../Searchbar/Searchbar";
+import Filters from "../Filters/Filters";
+import {useSelector}  from "react-redux";
 
 export default function Home() {
-    const [countries,setCountries] = useState([])
-    useEffect(() => {
-        axios(`http://localhost:3001/countries/`)
-        .then(({ data }) => {
-            setCountries(data);
-        }).catch((error)=>{
-            window.alert(error.message)
-        });
-    }, []); 
+  
+  const searchTerm = useSelector((state)=>state.searchTerm)
+  const countriesRedux = useSelector((state)=>state.countries)
 
-   return(
-      <div className='home'>
-        <div className='cards'>
-            {countries.map((pais)=>
-            <Card
-            key={pais.id}
-            id={pais.id}
-            name={pais.name}
-            flag={pais.flag}
-            continent={pais.continent}
-            capital={pais.capital}
-            subregion={pais.subregion}
-            area={pais.area}
-            population={pais.population}
-            />
-            )}
-        </div>
-        <div className="filtros">
 
-        </div>
+  return (
+    <div className="home">
+      <h3 className="title">Home</h3>
+      <Searchbar />
+      {searchTerm.length?
+      <h3 className="title">Searching countries by "{searchTerm}"</h3>:
+      <h3 className="title">Showing all countries</h3>
+      }
+      <div className="home-content">
+        <Cards countriesRedux={countriesRedux}/>
+        <Filters/>
       </div>
-   )
+    </div>
+  );
 }

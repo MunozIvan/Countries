@@ -6,11 +6,7 @@ function Card(props){
       id,
       name,
       flag,
-      continent,
       capital,
-      subregion,
-      area,
-      population,
     } = props;
   
     return (
