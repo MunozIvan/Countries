@@ -1,53 +1,63 @@
 import "./Filters.css";
 import * as actions from "../../redux/actions";
 import {useDispatch,useSelector}  from "react-redux";
-import { useEffect} from "react";
+import { useEffect, useState} from "react";
 
 function Filters(props){
 
   const activities = useSelector((state)=>state.activities)
   const dispatch = useDispatch()
 
+  const [continent, setContinent] = useState("All");
+  const [activity, setActivity] = useState("Default");
+  const [character, setCharacter] = useState("Asc");
+  const [population, setPopulation] = useState("Default");
+
   useEffect(() => {
     dispatch(actions.getActivities())
   }, []); 
 
-  function handleFilter1Change(event){
+  const handleContinentChange = (event) => {
     event.preventDefault();
-    dispatch(actions.orderByCharacter(event.target.value))
+    setContinent(event.target.value)
+    dispatch(actions.applyFilters(character,event.target.value,population,activity))
+    console.log(continent,activity,population,character);
     dispatch(actions.resetSearchterm())
   };
 
-  const handleFilter2Change = (event) => {
+  const handleActivityChange = (event) => {
     event.preventDefault();
-    dispatch(actions.orderByContinent(event.target.value))
+    
+    setActivity(event.target.value)
+    dispatch(actions.applyFilters(event.target.value,continent,population,event.target.value))
+    console.log(continent,activity,population,character);
     dispatch(actions.resetSearchterm())
   };
 
-  const handleFilter3Change = (event) => {
+  function handleCharacterChange(event){
     event.preventDefault();
-    dispatch(actions.orderByPopulation(event.target.value))
+    setCharacter(event.target.value)
+    dispatch(actions.applyFilters(event.target.value,continent,population,activity))
+    console.log(continent,activity,population,character);
     dispatch(actions.resetSearchterm())
   };
 
-  const handleFilter4Change = (event) => {
-    event.preventDefault();/*
-    dispatch(actions.orderByPopulation(event.target.value))*/
-    if(event.target.value!=="Default"){
-      let countries = activities.find((element) => element.name=== event.target.value).Countries
-      dispatch(actions.orderByActivity(countries))
-    }else{
-      dispatch(actions.getCountries())
-    }
+  const handlePopulationChange = (event) => {
+    event.preventDefault();
+
+    dispatch(actions.applyFilters(character,continent,event.target.value,activity))
+    console.log(continent,activity,population,character);
     dispatch(actions.resetSearchterm())
   };
+
+  
 
   return (
     <div className='filters'> 
 
       <div>
-        <label htmlFor="filter2">Filter by continent:</label>
-        <select id="filter2" onChange={handleFilter2Change}>
+        <label htmlFor="filterContinent">Filter by continent:</label>
+        <select id="filterContinent" onChange={handleContinentChange}>
             <option value='All' key='All'>All continents</option>
             <option value='Africa' key='Africa'>Africa</option>
             <option value='Antarctica' key='Antarctica'>Antarctica</option>
@@ -60,8 +70,8 @@ function Filters(props){
       </div>
 
       <div>
-        <label htmlFor="filter4">Filter by activity:</label>
-        <select id="filter4" onChange={handleFilter4Change}>
+        <label htmlFor="filterActivity">Filter by activity:</label>
+        <select id="filterActivity" onChange={handleActivityChange}>
           <option value="Default">Default</option>
           {activities.map((activity)=>
             <option value={activity.name} key={activity.name}>{activity.name}</option>
@@ -70,16 +80,16 @@ function Filters(props){
       </div>
     
       <div>
-        <label htmlFor="filter1">Sort by character:</label>
-        <select id="filter1" onChange={handleFilter1Change}>
+        <label htmlFor="SorterCharacter">Sort by character:</label>
+        <select id="SorterCharacter" onChange={handleCharacterChange}>
             <option value='Asc' key='Asc'>A-Z</option>
             <option value='Desc' key='Desc'>Z-A</option> 
         </select>
       </div>
       
       <div>
-        <label htmlFor="filter3">Sort by population:</label>
-        <select id="filter3" onChange={handleFilter3Change}>
+        <label htmlFor="SorterPopulation">Sort by population:</label>
+        <select id="SorterPopulation" onChange={handlePopulationChange}>
           <option value="Default">Default</option>
           <option value='Max' key='Max'>Max population</option>
           <option value='Min' key='Min'>Min population</option>

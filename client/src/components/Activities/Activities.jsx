@@ -18,19 +18,24 @@ function Activities(props) {
 
   const dispatch = useDispatch()
 
+  const handleNameChange = (e) => {
+    setName(e.target.value)
+  };
+
   const handleDurationChange = (e) => {
     const inputDuration = e.target.value;
-    if ((parseInt(inputDuration) > 0)|| e.target.value=="") {
+    if ((parseInt(inputDuration) > 0)|| e.target.value==="") {
       setDuration(inputDuration);
     }
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    if(activities.find((element) => element.name=== name)){
+      return console.log("esa actividad ya existe")
+    }
     const arrayPaises = countries.split(" ");
     const parsedDuration = parseInt(duration)
-
-    console.log(typeof parsedDuration);
 
     try {
       await axios.post(`http://localhost:3001/activities`, {
@@ -72,7 +77,7 @@ function Activities(props) {
               type="text"
               id="name"
               value={name}
-              onChange={(e) => setName(e.target.value)}
+              onChange={handleNameChange}
               required
               placeholder="Activity name"
             />

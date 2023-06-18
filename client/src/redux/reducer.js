@@ -1,8 +1,10 @@
 const initialState = {
+  allCountries: [],
   countries: [],
   activities: [],
   countryDetail: {},
   searchTerm: "",
+  filtering: false,
 };
 
 const rootReducer = (state = initialState, action) => {
@@ -12,6 +14,7 @@ const rootReducer = (state = initialState, action) => {
         ...state,
         searchTerm: "",
         countries: action.payload,
+        allCountries: action.payload,
       };
     case "GET_COUNTRY_DETAIL":
       return {
@@ -22,6 +25,12 @@ const rootReducer = (state = initialState, action) => {
       return {
         ...state,
         searchTerm: action.searchName,
+        countries: action.payload,
+      };
+
+    case "APPLY_FILTERS":
+      return {
+        ...state,
         countries: action.payload,
       };
     case "ORDER_BY_CHARACTER":
