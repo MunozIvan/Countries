@@ -22,12 +22,11 @@
 }
 
 .linkDetail {
-  display: flex;
+  display: flex; 
   flex-direction: column;
   justify-content: space-between;
   align-content: space-between;
   text-decoration: none;
-
 }
 
 

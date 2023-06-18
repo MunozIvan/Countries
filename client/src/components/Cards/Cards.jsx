@@ -1,13 +1,11 @@
 import "./Cards.css"
 import { useEffect} from "react";
 import Card from "../Card/Card";
-import {useDispatch, useSelector}  from "react-redux";
+import {useDispatch}  from "react-redux";
 import * as actions from "../../redux/actions";
 
 function Cards(props){
 
-    
-    const countriesRedux = useSelector((state)=>state.countries)
     const dispatch = useDispatch()
 
     useEffect(() => {
@@ -17,7 +15,7 @@ function Cards(props){
     
     return (
         <div className='cards'>
-            {countriesRedux.map((pais)=>
+            {props.currentItems.map((pais)=>
             <Card
             key={pais.id}
             id={pais.id}

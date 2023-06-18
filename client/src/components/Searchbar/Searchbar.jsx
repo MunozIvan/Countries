@@ -14,6 +14,7 @@ function Searchbar(props){
   const handleSubmit = (event) => {
     event.preventDefault();
     dispatch(actions.getCountriesByName(searchTerm))
+    setSearchTerm("")
   };
 
   return (
@@ -21,12 +22,12 @@ function Searchbar(props){
       <input
         type="text"
         className="input"
-        placeholder="Buscar..."
+        placeholder="Search..."
         value={searchTerm}
         onChange={handleChange}
       />
-      <button type="submit" className="button">
-        Buscar
+      <button type="submit" className="buscar-pais">
+        Search
       </button>
     </form>
   );

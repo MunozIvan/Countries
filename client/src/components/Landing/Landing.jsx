@@ -20,7 +20,7 @@ function Landing() {
               Go to the Homepage
             </button>
           </Link>
-        </div>
+        </div> 
         <div className="lineaDivisoria"/>
         <div className="landing-derecha">
           <div className="landing-derecha-estante">

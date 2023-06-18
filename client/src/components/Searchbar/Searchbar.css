@@ -12,16 +12,22 @@
     width: 200px;
 }
   
-.button {
-    padding: 10px 20px;
-    background-color: #4CAF50;
-    border: none;
-    color: white;
-    border-radius: 4px;
+.buscar-pais {
+    font-family: "Noto Serif", serif;
+    color: #fff;
+    padding: 5px 10px;
+    font-weight: bold;
     cursor: pointer;
-    font-size: 16px;
-}
+    transition: all 0.3s ease;
+    position: relative;
+    display: inline-block;
+    outline: none;
+    border-radius: 5px;
+    border: 2px solid #680148;
+    background: #680148;
+  }
   
-.button:hover {
-    background-color: #45a049;
-}
+  .buscar-pais:hover {
+    background: rgba(0, 0, 0, 0);
+    color: #680148;
+  }

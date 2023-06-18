@@ -1,10 +1,14 @@
+.activities{
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  margin-top: 3vw;
+}
 
 .formulario {
   max-width: 400px;
   margin: 0 auto;
   padding: 20px;
-  border: 1px solid #ccc;
-  border-radius: 5px;
 }
 
 .title {
@@ -21,26 +25,58 @@
   margin-bottom: 5px;
 }
 
-input,
-select {
+.input-text,
+.input-select {
   width: 100%;
   padding: 8px;
   border: 1px solid #ccc;
   border-radius: 3px;
 }
 
-button {
+.crear-actividad {
   display: block;
   width: 100%;
-  padding: 10px;
-  margin-top: 10px;
-  background-color: #007bff;
+  font-family: "Noto Serif", serif;
+  font-size: 30px;
   color: #fff;
-  border: none;
-  border-radius: 5px;
+  padding: 5px 10px;
+  font-weight: bold;
   cursor: pointer;
+  transition: all 0.3s ease;
+  position: relative;
+  display: inline-block;
+  outline: none;
+  border-radius: 5px;
+  border: 2px solid #680148;
+  background: #680148;
 }
 
-button:hover {
-  background-color: #0056b3;
+.crear-actividad:hover {
+  background: rgba(0, 0, 0, 0);
+  color: #680148;
+}
+
+
+.activities-derecha{
+  margin-left: 3vw;
+  display: flex;
+  flex-direction: column;
+  max-width: 45vw;
+  gap: 4vw;
+  align-items: center;
+  border-left: #1a0413;
+}
+.activities-derecha-estante{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 2vw;
+}
+.activities-derecha-estante-descripcion{
+  font-size: 32px;
+  font-family: 'Noto Serif', serif;
+}
+
+.activity1{
+  width: 20vw;
 }

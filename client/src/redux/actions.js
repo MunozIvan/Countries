@@ -6,9 +6,10 @@ export const GET_COUNTRIES_BY_NAME = "GET_COUNTRIES_BY_NAME";
 export const ORDER_BY_CHARACTER = "ORDER_BY_CHARACTER";
 export const ORDER_BY_POPULATION = "ORDER_BY_POPULATION";
 export const ORDER_BY_CONTINENT = "ORDER_BY_CONTINENT";
-export const GET_ACTIVITY = "GET_ACTIVITY";
+export const GET_ACTIVITIES = "GET_ACTIVITIES";
 export const DELETE_ACTIVITY = "DELETE_ACTIVITY";
-export const ORDER_BY_ACTIVITY = "BY_ACTIVITY";
+export const ORDER_BY_ACTIVITY = "ORDER_BY_ACTIVITY";
+export const RESET_SEARCHTERM = "RESET_SEARCHTERM";
 
 const url = `http://localhost:3001`;
 
@@ -151,97 +152,35 @@ export function orderByContinent(ordering) {
       };
 }
 
-export function orderByActivity(payload) {
-  return {
-    type: ORDER_BY_ACTIVITY,
-    payload,
+export function getActivities() {
+  return async function (dispatch) {
+    try {
+      const res = await axios.get(`${url}/activities/`);
+      return dispatch({
+        type: GET_ACTIVITIES,
+        payload: res.data,
+      });
+    } catch (error) {
+      console.log(error.message);
+    }
   };
 }
 
-/*
-
-
-export function postActivity(payload) {
-    return async function () {
-        try {
-            const res = await axios.post(`${url}/activity/`, payload)
-            return res;
-        } catch (error) {
-            console.log(error)
-        }
-    }
-}
-
-export function deleteActivity(id) {
-   try {
-      return async (dispatch) => {
-       const {data} = await axios.delete(`${url}/activity/`, id)
-            return dispatch({
-               type: 'REMOVE_FAV',
-               payload: data,
-         });
-         
-      };
-   } catch (error) {
+export function orderByActivity(countries) {
+  return async function (dispatch) {
+    try {
+      return dispatch({
+        type: ORDER_BY_ACTIVITY,
+        payload: countries,
+      });
+    } catch (error) {
       console.log(error.message);
-   }
+    }
+  }
 }
 
-export function byOrder(payload) {
-    return {
-        type: BY_ODER,
-        payload
-    }
+export function resetSearchterm() {
+  return {
+    type: RESET_SEARCHTERM,
+  };
 }
-
-export function byPopulation(payload) {
-    return {
-        type: BY_POPULATION,
-        payload
-    }
-}
-
-export function byContinent(payload) {
-    return {
-        type: BY_CONTINENT,
-        payload
-    }
-}
-
-export function byActivity(payload) {
-    return {
-        type: BY_ACTIVITY,
-        payload
-    }
-}
-
-export function getByName(name) {
-    return async function (dispatch) {
-        try {
-            const res = await axios.get(`${url}/countries?name=${name}`)
-            return dispatch({
-                type: BY_NAME,
-                payload: res.data
-            })
-        } catch (error) {
-            return dispatch({
-                type: FAILURE,
-                payload: error.response.data.msg
-            })
-        }
-    }
-}
-
-export function getActivity() {
-    return async function (dispatch) {
-        try {
-            const res = await axios.get(`${url}/activity`);
-            return dispatch({
-                type: GET_ACTIVITY,
-                payload: res.data
-            })
-        } catch (error) {
-            console.log(error)
-        }
-    }
-}*/

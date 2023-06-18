@@ -24,11 +24,10 @@ export default function Detail() {
 
     return (
         <div className="detail-container">
-            <Link to={"/home"}><div className="detail-overlay"/></Link>
                 {countryDetail && Object.keys(countryDetail).length > 0 ? (
                     <div className="detail-content">
                         <div className="tarjeta">
-                            <img src={countryDetail.flag} className="detailImage" alt='imagen personaje rick y morty' />
+                            <img src={countryDetail.flag} className="detailImage" alt='Bandera' /> 
                             <div className="description">
                                 <h2 className="name">{countryDetail.name}</h2>
                                 <h3>Capital: {countryDetail.capital}</h3>
