@@ -45,6 +45,9 @@ export default function Home() {
             <button onClick={prevPage} disabled={currentPage === 1}>
               Previous page
             </button>
+            <div className="pagina-actual">
+              {currentPage}
+            </div>
             <button onClick={nextPage} disabled={currentItems.length < itemsPerPage}>
               Next page
             </button>

@@ -6,6 +6,25 @@ import activity2 from "../../assets/images/activity2.svg"
 import {useDispatch, useSelector}  from "react-redux";
 import * as actions from "../../redux/actions";
 
+
+function validate(activityName,duration,errors,setErrors){
+  if(activityName.length>30){
+    console.log("PONER ERROR")
+    setErrors({...errors,activityName:"Activity name must be less than 40 characters"})
+  }else{
+    console.log(activityName.length)
+      setErrors({...errors,activityName:""})
+  }
+
+  if((duration>25)){
+    setErrors({...errors,duration:"Duration must be lower than 25"})
+  }else{
+      setErrors({...errors,duration:""})
+  }
+}
+
+
+
 function Activities(props) {
 
   const [name, setName] = useState("");
@@ -14,12 +33,20 @@ function Activities(props) {
   const [season, setSeason] = useState("Spring");
   const [countries, setCountries] = useState("");
 
+  const [errors,setErrors] = useState({
+    activityName:"",
+    duration:""
+  })
+
+
   const activities = useSelector((state)=>state.activities)
 
   const dispatch = useDispatch()
 
   const handleNameChange = (e) => {
     setName(e.target.value)
+
+    validate(e.target.value,duration,errors,setErrors)
   };
 
   const handleDurationChange = (e) => {
@@ -27,10 +54,18 @@ function Activities(props) {
     if ((parseInt(inputDuration) > 0)|| e.target.value==="") {
       setDuration(inputDuration);
     }
+
+    validate(name,e.target.value,errors,setErrors)
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+
+    if(errors.activityName.length>0 || errors.duration.length>0){
+      return window.alert("Please check form errors");
+    }
+
+
     if(activities.find((element) => element.name=== name)){
       return console.log("esa actividad ya existe")
     }
@@ -81,6 +116,7 @@ function Activities(props) {
               required
               placeholder="Activity name"
             />
+            <span>{errors.activityName}</span>
           </div>
 
           <div className="form-group">
@@ -115,6 +151,7 @@ function Activities(props) {
               placeholder="In hours"
               required
             />
+            <span>{errors.duration}</span>
           </div>
           <div className="form-group">
             <label htmlFor="season" className="etiqueta">
