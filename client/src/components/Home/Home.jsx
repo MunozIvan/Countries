@@ -9,9 +9,9 @@ import * as actions from "../../redux/actions";
 export default function Home() {
   const searchTerm = useSelector((state)=>state.searchTerm)
   const countriesRedux = useSelector((state)=>state.countries)
+  const currentPage = useSelector((state)=>state.page)
   const dispatch = useDispatch()
 
-  const [currentPage, setCurrentPage] = useState(1);
   const [itemsPerPage] = useState(10);
 
   const indexOfLastItem = currentPage * itemsPerPage;
@@ -26,11 +26,11 @@ export default function Home() {
   }, []); 
 
   const nextPage = () => {
-    setCurrentPage(currentPage + 1);
+    dispatch(actions.nextPage());
   };
   
   const prevPage = () => {
-    setCurrentPage(currentPage - 1);
+    dispatch(actions.prevPage());
   };
 
   return (

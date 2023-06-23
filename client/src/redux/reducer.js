@@ -1,4 +1,5 @@
 const initialState = {
+  page:1,
   allCountries:[],
   countries: [],
   activities: [],
@@ -26,26 +27,40 @@ const rootReducer = (state = initialState, action) => {
         searchTerm: action.searchName,
         countries: action.payload,
       };
-
     case "APPLY_FILTERS":
+      console.log(action.payload)
+
+      var filteringCountries = [...state.allCountries]
+      // Aplicar el filtro orderByContinent
+      if(action.payload.orderByContinent!=="All"){
+        filteringCountries = filteringCountries.filter((country) => country.continent.includes(action.payload.orderByContinent))
+      }
+      
+      //APLICAR FILTRO DE ACTIVIDADES ACA
+      if(action.payload.orderByActivity!=="Default"){
+        filteringCountries = filteringCountries.filter((country) => country.Activities.find((actividad)=>actividad.name===action.payload.orderByActivity))
+      }
+      
+      // Aplicar el filtro orderByCharacter
+      if(action.payload.orderByCharacter==="Asc"){
+        filteringCountries = filteringCountries.sort((a, b) => a.name.localeCompare(b.name))
+      }else{
+        filteringCountries = filteringCountries.sort((a, b) => b.name.localeCompare(a.name))
+      }
+
+      // Aplicar el filtro orderByPopulation
+      if(action.payload.orderByPopulation!=="Default"){
+        if(action.payload.orderByPopulation === "Min"){
+          filteringCountries = filteringCountries.sort((a, b) => a.population - b.population)
+        }else{
+          filteringCountries = filteringCountries.sort((a, b) => b.population - a.population)
+        }
+      }
       return {
         ...state,
-        countries: action.payload,
-      };
-    case "ORDER_BY_CHARACTER":
-      return {
-        ...state,
-        countries: action.payload,
-      };
-    case "ORDER_BY_POPULATION":
-      return {
-        ...state,
-        countries: action.payload,
-      };
-    case "ORDER_BY_CONTINENT":
-      return {
-        ...state,
-        countries: action.payload,
+        countries: filteringCountries,
+        page:1,
+        searchTerm: "",
       };
     case "GET_ACTIVITIES":
       return {
@@ -56,15 +71,20 @@ const rootReducer = (state = initialState, action) => {
       return {
         ...state,
       };
-    case "ORDER_BY_ACTIVITY":
-      return {
-        ...state,
-        countries: action.payload,
-      };
     case "RESET_SEARCHTERM":
       return {
         ...state,
         searchTerm: "",
+      };
+      case "PREV_PAGE":
+      return {
+        ...state,
+        page: state.page-1,
+      };
+      case "NEXT_PAGE":
+      return {
+        ...state,
+        page: state.page+1,
       };
     default:
       return state;
