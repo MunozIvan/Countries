@@ -1,5 +1,14 @@
 .activities{
   display: flex;
+  flex-direction: column;
+  align-content: center;
+  justify-content: center;
+  margin-bottom: 3vw;
+  gap: 4vw;
+}
+
+.activities-create{
+  display: flex;
   flex-direction: row;
   justify-content: center;
   margin-top: 2vw;

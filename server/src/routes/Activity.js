@@ -9,7 +9,10 @@ router.post("/", async (req, res) => {
         if (!name || !difficulty || !duration || !season) {
             res.status(400).send("Some data is missing")
         } else {
-
+            const existingActivity = await Activity.findOne({ where: { name } });
+            if (existingActivity) {
+            return res.status(409).send("Activity already exists");
+            }
             let nuevo = await Activity.create({name,difficulty, duration, season}) //// Crea una nueva actividad en la base de datos
 
             let arr = [] //Agrega los países relacionados a la actividad
@@ -37,13 +40,13 @@ router.get("/", async (req, res) => {
 })
 
 router.delete("/", async (req, res) => {
-     let {id} = req.body
+     let {name} = req.body
     try {
-        await Activity.destroy({where:{id: id}})
+        await Activity.destroy({where:{name: name}})
         return res.status(200).json("Activity deleted successfully")
     } catch (error ){
         console.log(error)    
-        return res.status(404).send(error.message)
+        return res.status(404).send("Something went wrong")
     }
 })
 

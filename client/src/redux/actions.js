@@ -98,103 +98,7 @@ export function applyFilters(orderByCharacter,  orderByContinent, orderByPopulat
     }
   };
 }
-/*/////////////////////////////////////////////
-export function orderByCharacter(ordering) {
-    return async function (dispatch) {
-        try {
-          const res = await axios.get(`${url}/countries/`);
-          const orderCountries =
-            ordering === "Asc"
-            ? res.data.sort(function (a, b) {
-                if (a.name > b.name) {
-                    return 1;
-                }
-                if (b.name > a.name) {
-                    return -1;
-                }
-                return 0;
-                })
-            : res.data.sort(function (a, b) {
-                if (a.name > b.name) {
-                    return -1;
-                }
-                if (b.name > a.name) {
-                    return 1;
-                }
-                return 0;
-                });
-          return dispatch({
-            type: ORDER_BY_CHARACTER,
-            payload: orderCountries,
-          });
-        } catch (error) {
-          console.log(error.message);
-        }
-      };
-}
 
-export function orderByPopulation(ordering) {
-    return async function (dispatch) {
-        try {
-          const res = await axios.get(`${url}/countries/`);
-          if(ordering === "Default"){
-            return dispatch({
-                type: ORDER_BY_POPULATION,
-                payload: res.data,
-              });
-          }
-          const orderCountries =
-          ordering === "Min"
-            ? res.data.sort(function (a, b) {
-                if (a.population > b.population) {
-                    return 1;
-                }
-                if (b.population > a.population) {
-                    return -1;
-                }
-                return 0;
-                })
-            : res.data.sort(function (a, b) {
-                if (a.population > b.population) {
-                    return -1;
-                }
-                if (b.population > a.population) {
-                    return 1;
-                }
-                return 0;
-                });
-          return dispatch({
-            type: ORDER_BY_POPULATION,
-            payload: orderCountries,
-          });
-        } catch (error) {
-          console.log(error.message);
-        }
-      }; 
-}
-
-export function orderByContinent(ordering) {
-    return async function (dispatch) {
-        try {
-          const res = await axios.get(`${url}/countries/`);
-          if(ordering === "All"){
-            return dispatch({
-                type: ORDER_BY_CONTINENT,
-                payload: res.data,
-              });
-          }
-          const orderCountries =
-          res.data.filter((country) => country.continent.includes(ordering))
-          return dispatch({
-            type: ORDER_BY_CONTINENT,
-            payload: orderCountries,
-          });
-        } catch (error) {
-          console.log(error.message);
-        }
-      };
-}
-//////////////////////////////*/
 export function getActivities() {
   return async function (dispatch) {
     try {
@@ -208,19 +112,20 @@ export function getActivities() {
     }
   };
 }
-/*
-export function orderByActivity(countries) {
+
+export function deleteActivity(name) {
   return async function (dispatch) {
     try {
+      const res = await axios.delete(`${url}/activities/`,{name});
       return dispatch({
-        type: ORDER_BY_ACTIVITY,
-        payload: countries,
+        type: DELETE_ACTIVITY,
+        payload: res.data,
       });
     } catch (error) {
       console.log(error.message);
     }
-  }
-}*/
+  };
+}
 
 export function resetSearchterm() {
   return {

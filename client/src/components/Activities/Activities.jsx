@@ -5,24 +5,23 @@ import activity1 from "../../assets/images/activity1.svg"
 import activity2 from "../../assets/images/activity2.svg"
 import {useDispatch, useSelector}  from "react-redux";
 import * as actions from "../../redux/actions";
+import DeleteActivity from "./DeleteActivity";
 
 
 function validate(activityName,duration,errors,setErrors){
   if(activityName.length>30){
     console.log("PONER ERROR")
-    setErrors({...errors,activityName:"Activity name must be less than 40 characters"})
+    setErrors({...errors,activityName:"Duration must be lower than 25"})
   }else{
-    console.log(activityName.length)
     setErrors({...errors,activityName:""})
   }
 
   if((duration>25)){
     setErrors({...errors,duration:"Duration must be lower than 25"})
   }else{
-      setErrors({...errors,duration:""})
+    setErrors({...errors,duration:""})
   }
 }
-
 
 
 function Activities(props) {
@@ -38,10 +37,12 @@ function Activities(props) {
     duration:""
   })
 
-
   const activities = useSelector((state)=>state.activities)
 
   const dispatch = useDispatch()
+
+
+  ////////////////////CREATE HANDLERS//////////////////////////////
 
   const handleNameChange = (e) => {
     setName(e.target.value)
@@ -97,110 +98,121 @@ function Activities(props) {
     window.alert("Activity created");
   };
 
+  ////////////////////DELETE HANDLERS//////////////////////////////
+
+
+  
+
   return (
     <div className="activities">
-      <div className="formulario">
-        <h2 className="title">Activity creation form</h2>
 
-        <form onSubmit={handleSubmit}>
-          <div className="form-group">
-            <label htmlFor="name" className="etiqueta">
-              Name:
-            </label>
-            <input
-              className="input-text"
-              type="text"
-              id="name"
-              value={name}
-              onChange={handleNameChange}
-              required
-              placeholder="Activity name"
-            />
-            <span>{errors.activityName}</span>
-          </div>
+      <div className="activities-create">
+        <div className="formulario">
+          <h2 className="title">Activity creation form</h2>
 
-          <div className="form-group">
-            <label htmlFor="difficulty" className="etiqueta">
-              Difficulty:
-            </label>
-            <select
-              className="input-select"
-              id="difficulty"
-              value={difficulty}
-              onChange={(e) => setDifficulty(e.target.value)}
-              required
-            >
-              <option value="1">No difficulty</option>
-              <option value="2">Easy</option>
-              <option value="3">Moderate</option>
-              <option value="4">Hard</option>
-              <option value="5">For experts only</option>
-            </select>
-          </div>
+          <form onSubmit={handleSubmit}>
+            <div className="form-group">
+              <label htmlFor="name" className="etiqueta">
+                Name:
+              </label>
+              <input
+                className="input-text"
+                type="text"
+                id="name"
+                value={name}
+                onChange={handleNameChange}
+                required
+                placeholder="Activity name"
+              />
+              <span>{errors.activityName}</span>
+            </div>
 
-          <div className="form-group">
-            <label htmlFor="duration" className="etiqueta">
-              Duration:
-            </label>
-            <input
-              className="input-text"
-              type="number"
-              id="duration"
-              value={duration}
-              onChange={handleDurationChange}
-              placeholder="In hours"
-              required
-            />
-            <span>{errors.duration}</span>
-          </div>
-          <div className="form-group">
-            <label htmlFor="season" className="etiqueta">
-              Season:
-            </label>
-            <select
-              className="input-select"
-              id="season"
-              value={season}
-              onChange={(e) => setSeason(e.target.value)}
-              required
-            >
-              <option value="Spring">Spring</option>
-              <option value="Summer">Summer</option>
-              <option value="Autumn">Autumn</option>
-              <option value="Winter">Winter</option>
-            </select>
-          </div>
+            <div className="form-group">
+              <label htmlFor="difficulty" className="etiqueta">
+                Difficulty:
+              </label>
+              <select
+                className="input-select"
+                id="difficulty"
+                value={difficulty}
+                onChange={(e) => setDifficulty(e.target.value)}
+                required
+              >
+                <option value="1">No difficulty</option>
+                <option value="2">Easy</option>
+                <option value="3">Moderate</option>
+                <option value="4">Hard</option>
+                <option value="5">For experts only</option>
+              </select>
+            </div>
 
-          <div className="form-group">
-            <label htmlFor="countries" className="etiqueta">
-              Countries:
-            </label>
-            <input
-              className="input-text"
-              type="text"
-              id="countries"
-              value={countries}
-              onChange={(e) => setCountries(e.target.value.toUpperCase())}
-              placeholder="Add id of the countries separated with spaces"
-              required
-            />
-          </div>
+            <div className="form-group">
+              <label htmlFor="duration" className="etiqueta">
+                Duration:
+              </label>
+              <input
+                className="input-text"
+                type="number"
+                id="duration"
+                value={duration}
+                onChange={handleDurationChange}
+                placeholder="In hours"
+                required
+              />
+              <span>{errors.duration}</span>
+            </div>
+            <div className="form-group">
+              <label htmlFor="season" className="etiqueta">
+                Season:
+              </label>
+              <select
+                className="input-select"
+                id="season"
+                value={season}
+                onChange={(e) => setSeason(e.target.value)}
+                required
+              >
+                <option value="Spring">Spring</option>
+                <option value="Summer">Summer</option>
+                <option value="Autumn">Autumn</option>
+                <option value="Winter">Winter</option>
+              </select>
+            </div>
 
-          <button type="submit" className="crear-actividad">
-            Add Activity
-          </button>
-        </form>
-      </div>
-      <div className="activities-derecha">
-          <div className="activities-derecha-estante">
-            <p className="activities-derecha-estante-descripcion">Here you can add activities to our database</p>
-            <img className="activity1" src={activity1} alt="activity" />
-          </div>
-          <div className="activities-derecha-estante">
-            <img className="activity1" src={activity2} alt="activity" />
-            <p className="activities-derecha-estante-descripcion">Remember to put the country id</p>
-          </div>
+            <div className="form-group">
+              <label htmlFor="countries" className="etiqueta">
+                Countries:
+              </label>
+              <input
+                className="input-text"
+                type="text"
+                id="countries"
+                value={countries}
+                onChange={(e) => setCountries(e.target.value.toUpperCase())}
+                placeholder="Add id of the countries separated with spaces"
+                required
+              />
+            </div>
+
+            <button type="submit" className="crear-actividad">
+              Add Activity
+            </button>
+          </form>
         </div>
+        <div className="activities-derecha">
+            <div className="activities-derecha-estante">
+              <p className="activities-derecha-estante-descripcion">Here you can add activities to our database</p>
+              <img className="activity1" src={activity1} alt="activity" />
+            </div>
+            <div className="activities-derecha-estante">
+              <img className="activity1" src={activity2} alt="activity" />
+              <p className="activities-derecha-estante-descripcion">Remember to put the country id</p>
+            </div>
+          </div>
+      </div>
+
+      <DeleteActivity/>
+
     </div>
   );
 }

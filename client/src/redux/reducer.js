@@ -1,10 +1,8 @@
 const initialState = {
-  allCountries: [],
   countries: [],
   activities: [],
   countryDetail: {},
   searchTerm: "",
-  filtering: false,
 };
 
 const rootReducer = (state = initialState, action) => {
@@ -52,6 +50,10 @@ const rootReducer = (state = initialState, action) => {
       return {
         ...state,
         activities: action.payload,
+      };
+    case "DELETE_ACTIVITIES":
+      return {
+        ...state,
       };
     case "ORDER_BY_ACTIVITY":
       return {

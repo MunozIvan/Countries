@@ -18,6 +18,9 @@ export default function Home() {
   const indexOfFirstItem = indexOfLastItem - itemsPerPage;
   const currentItems = countriesRedux.slice(indexOfFirstItem, indexOfLastItem);
 
+  const isLastPage = indexOfLastItem === countriesRedux.length;
+  const hasNextPage = currentItems.length >= itemsPerPage;
+
   useEffect(() => {
     dispatch(actions.getCountries())
   }, []); 
@@ -48,7 +51,7 @@ export default function Home() {
             <div className="pagina-actual">
               {currentPage}
             </div>
-            <button onClick={nextPage} disabled={currentItems.length < itemsPerPage}>
+            <button onClick={nextPage} disabled={!hasNextPage || isLastPage}>
               Next page
             </button>
           </div>
