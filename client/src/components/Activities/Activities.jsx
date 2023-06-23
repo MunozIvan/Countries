@@ -13,7 +13,7 @@ function validate(activityName,duration,errors,setErrors){
     setErrors({...errors,activityName:"Activity name must be less than 40 characters"})
   }else{
     console.log(activityName.length)
-      setErrors({...errors,activityName:""})
+    setErrors({...errors,activityName:""})
   }
 
   if((duration>25)){
@@ -67,7 +67,7 @@ function Activities(props) {
 
 
     if(activities.find((element) => element.name=== name)){
-      return console.log("esa actividad ya existe")
+      return window.alert("That activity already exists")
     }
     const arrayPaises = countries.split(" ");
     const parsedDuration = parseInt(duration)

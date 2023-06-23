@@ -1,0 +1,25 @@
+.news{
+    background-color: indigo;
+    max-width: 70%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 3vw;
+    color: antiquewhite;
+    border-color: black;
+    border-style: solid;
+    border-radius: 5px;
+    padding-bottom: 2vw
+}
+
+.presentation{
+    color: antiquewhite;
+    text-decoration: underline;
+}
+
+.news-image{
+    width: 80%;
+}
+.news-url{
+    max-width: 95%;
+}

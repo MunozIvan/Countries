@@ -21,7 +21,6 @@ function Filters(props){
     event.preventDefault();
     setContinent(event.target.value)
     dispatch(actions.applyFilters(character,event.target.value,population,activity))
-    console.log(continent,activity,population,character);
     dispatch(actions.resetSearchterm())
   };
 
@@ -30,7 +29,6 @@ function Filters(props){
     
     setActivity(event.target.value)
     dispatch(actions.applyFilters(event.target.value,continent,population,event.target.value))
-    console.log(continent,activity,population,character);
     dispatch(actions.resetSearchterm())
   };
 
@@ -38,15 +36,13 @@ function Filters(props){
     event.preventDefault();
     setCharacter(event.target.value)
     dispatch(actions.applyFilters(event.target.value,continent,population,activity))
-    console.log(continent,activity,population,character);
     dispatch(actions.resetSearchterm())
   };
 
   const handlePopulationChange = (event) => {
     event.preventDefault();
-
+    setPopulation(event.target.value)
     dispatch(actions.applyFilters(character,continent,event.target.value,activity))
-    console.log(continent,activity,population,character);
     dispatch(actions.resetSearchterm())
   };
 

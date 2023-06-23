@@ -1,9 +1,10 @@
 import "./Detail.css";
 import {useEffect } from "react";
-import { Link, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import Map from "./Map";
 import {useDispatch, useSelector}  from "react-redux";
 import * as actions from "../../redux/actions";
+import News from "../News/News";
 
 export default function Detail() {
     const { id } = useParams(); 
@@ -33,12 +34,11 @@ export default function Detail() {
                                 <h3>Capital: {countryDetail.capital}</h3>
                                 <h3>Continent: {countryDetail.continent}</h3>
                                 <h3>Subregion: {countryDetail.subregion}</h3>
-                                <h3>Area: {countryDetail.area}</h3>
+                                <h3>Area: {countryDetail.area} km²</h3>
                                 <h3>Population: {countryDetail.population}</h3>
                                 {countryDetail.Activities.length?
                                 <h3>Activities: {activitiesNames}</h3>:
-                                <></>
-                                }
+                                <></>}
                                 <h4>Wikipedia's website: <a href={`https://en.wikipedia.org/wiki/${countryDetail.name}`}>https://en.wikipedia.org/wiki/{countryDetail.name}</a></h4>
                             </div>
                         </div>
@@ -47,7 +47,13 @@ export default function Detail() {
                 ) : (
                     <p>Cargando...</p>
                 )}
-            </div>
+                {countryDetail && Object.keys(countryDetail).length > 0 ? (
+                    <News/>
+                ) : (
+                    <p>Cargando...</p>
+                )}
+                
+        </div>
         
     );
 }

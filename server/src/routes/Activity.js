@@ -16,7 +16,7 @@ router.post("/", async (req, res) => {
             for (let i = 0; i < countries.length; i++) {
                 arr[i] = await nuevo.addCountry(countries[i])
             }
-            res.status(202).send("Actividad created")
+            res.status(202).send("Activity created successfully")
         }
 
     } catch (error ){
@@ -40,7 +40,7 @@ router.delete("/", async (req, res) => {
      let {id} = req.body
     try {
         await Activity.destroy({where:{id: id}})
-        return res.status(200).json("actividad borrada")
+        return res.status(200).json("Activity deleted successfully")
     } catch (error ){
         console.log(error)    
         return res.status(404).send(error.message)

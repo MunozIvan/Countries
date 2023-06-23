@@ -1,8 +1,11 @@
 .detail-container {
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
   margin-bottom: 2vw;
+  background-color: #680148;
+  border-radius: 5px;
 }
 
 .detail-content {
@@ -14,8 +17,6 @@
 }
 
 .detail-content {
-  background-color: #680148;
-  border-radius: 5px;
   text-align: center;
   z-index: 1;
 }
