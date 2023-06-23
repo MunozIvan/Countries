@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import "./Activities.css";
 import axios from "axios";
 import activity1 from "../../assets/images/activity1.svg"
@@ -8,15 +8,14 @@ import * as actions from "../../redux/actions";
 import DeleteActivity from "./DeleteActivity";
 
 
-function validate(activityName,duration,errors,setErrors){
-  if(activityName.length>30){
-    console.log("PONER ERROR")
-    setErrors({...errors,activityName:"Duration must be lower than 25"})
+function validate(activityName,duration,errors,setErrors){/*
+  if(activityName.length>=30){
+    setErrors({...errors,activityName:"Activity name must be lower than 30"})
   }else{
     setErrors({...errors,activityName:""})
-  }
+  }*/
 
-  if((duration>25)){
+  if((duration>=25)){
     setErrors({...errors,duration:"Duration must be lower than 25"})
   }else{
     setErrors({...errors,duration:""})
@@ -46,8 +45,12 @@ function Activities(props) {
 
   const handleNameChange = (e) => {
     setName(e.target.value)
-
-    validate(e.target.value,duration,errors,setErrors)
+    if(e.target.value.length>=30){
+      setErrors({...errors,activityName:"Activity name must be lower than 30 characters"})
+    }else{
+      setErrors({...errors,activityName:""})
+    }
+    //validate(e.target.value,duration,errors,setErrors)
   };
 
   const handleDurationChange = (e) => {
@@ -97,11 +100,6 @@ function Activities(props) {
 
     window.alert("Activity created");
   };
-
-  ////////////////////DELETE HANDLERS//////////////////////////////
-
-
-  
 
   return (
     <div className="activities">
