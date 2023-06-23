@@ -29,7 +29,7 @@ function Activities(props) {
   const [difficulty, setDifficulty] = useState("1");
   const [duration, setDuration] = useState("");
   const [season, setSeason] = useState("Spring");
-  const [countries, setCountries] = useState("");
+  const [countries, setCountries] = useState([]);
 
   const [errors,setErrors] = useState({
     activityName:"",
@@ -37,6 +37,8 @@ function Activities(props) {
   })
 
   const activities = useSelector((state)=>state.activities)
+
+  const allCountries = useSelector((state)=>state.allCountries)
 
   const dispatch = useDispatch()
 
@@ -73,7 +75,7 @@ function Activities(props) {
     if(activities.find((element) => element.name=== name)){
       return window.alert("That activity already exists")
     }
-    const arrayPaises = countries.split(" ");
+    
     const parsedDuration = parseInt(duration)
 
     try {
@@ -82,7 +84,7 @@ function Activities(props) {
         difficulty,
         duration:parsedDuration,
         season,
-        countries: arrayPaises,
+        countries,
       });
 
       await dispatch(actions.getActivities());
@@ -177,20 +179,41 @@ function Activities(props) {
               </select>
             </div>
 
-            <div className="form-group">
+            <div className="form-group">{/*
               <label htmlFor="countries" className="etiqueta">
+              Countries:
+            </label>
+            <input
+              className="input-text"
+              type="text"
+              id="countries"
+              value={countries}
+              onChange={(e) => setCountries(e.target.value.toUpperCase())}
+              placeholder="Add id of the countries separated with spaces"
+              required
+            />
+          */
+            }
+            <label htmlFor="countries" className="etiqueta">
                 Countries:
               </label>
-              <input
-                className="input-text"
-                type="text"
+              <select
+                className="input-select"
                 id="countries"
-                value={countries}
-                onChange={(e) => setCountries(e.target.value.toUpperCase())}
-                placeholder="Add id of the countries separated with spaces"
+                onChange={(e) => setCountries([...countries,e.target.value])}
                 required
-              />
-            </div>
+              >
+                {allCountries.length&&allCountries.map((country)=>(
+                  <option value={country.id}>{country.name}</option>
+                ))}
+              </select>
+              <ul>
+                {countries.map((country)=>(
+                  <li>{country}</li>
+                ))}
+              </ul>
+             </div> 
+
 
             <button type="submit" className="crear-actividad">
               Add Activity
