@@ -26,7 +26,7 @@ https://countries-phi-brown.vercel.app/
 
 ## **🤓 CONTACT**
 
-https://www.linkedin.com/in/iv%C3%A1n-mu%C3%B1oz-2a72391bb/
+https://www.linkedin.com/in/ivanmg-f-s-developer/
 
 <br />
 
